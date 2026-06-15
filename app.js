@@ -513,7 +513,11 @@ const indexHtml = `<!DOCTYPE html>
 
         const data = await response.json();
         if (!response.ok) {
-          resultContent.innerHTML = `<p class="error">${data.error || 'Prediction failed.'}</p>`;
+          const p = document.createElement('p');
+          p.className = 'error';
+          p.textContent = data.error || 'Prediction failed.';
+          resultContent.innerHTML = '';
+          resultContent.appendChild(p);
           return;
         }
 
